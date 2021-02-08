@@ -1,0 +1,63 @@
+<div class="content ml-5">
+    <div class="row">
+        <div class="col-md4 m-3"><a routerLink="/persona">Persona</a></div>
+        <div class="col-md4 m-3"><a routerLink="/puesto">Puesto</a></div>
+        <div class="col-md4 m-3"><a routerLink="/empleadopuesto">Empleado Puesto</a></div>
+    </div>
+    <div>Personas</div>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-striped table-bordered table-dark">
+                <thead>
+                <tr>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Apellido</th>
+                  <th scope="col">Fecha Nacimiento</th>
+                  <th>Accion</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of listapersonas; let i = index;">
+                        
+                        <td>{{ p.nombre }}</td>
+                        <td>{{ p.apellido }}</td>
+                        <td>{{ p.fechaNacimiento }}</td>
+                        <td (click)="eliminar(i,p)"><a href="/persona">Eliminar</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+
+            <form class="container" [formGroup]="formPersona"  (ngSubmit)="registar()">
+    
+                <div class="form-group">
+                    <label for="">Nombre</label><br>
+                    <input type="text" formControlName="nombre" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }" />
+                    <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+                        <div *ngIf="f.nombre.errors.required">Campo requerido.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="">Apellido</label><br>
+                    <input type="text" formControlName="apellido" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.apellido.errors }" />
+                    <div *ngIf="submitted && f.apellido.errors" class="invalid-feedback">
+                        <div *ngIf="f.apellido.errors.required">Campo requerido.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="">Fecha Nacieminto</label><br>
+                    <input type="date" formControlName="fechaNacimiento" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fechaNacimiento.errors }" />
+                    <div *ngIf="submitted && f.fechaNacimiento.errors" class="invalid-feedback">
+                        <div *ngIf="f.fechaNacimiento.errors.required">Campo requerido.</div>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit"    class="btn btn-primary"  style="background-color: red;">Guardar</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,61 @@
+<div class="content ml-5">
+    <div class="row">
+        <div class="col-md4 m-3"><a routerLink="/persona">Persona</a></div>
+        <div class="col-md4 m-3"><a routerLink="/puesto">Puesto</a></div>
+        <div class="col-md4 m-3"><a routerLink="/empleadopuesto">Empleado Puesto</a></div>
+    </div>
+    <div>Empleados puestos</div>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-striped table-bordered table-dark">
+                <thead>
+                <tr>
+                  <th scope="col">Puesto</th>
+                  <th scope="col">Persona</th>
+                  <th scope="col">Accion</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of listaempleadopuesto; let i = index;">
+                        <td>{{ p.puesto | json }}</td>
+                        <td>{{ p.persona | json }}</td>
+                        <td (click)="eliminar(i)" ><a href="/empleadopuesto">Eliminar</a></td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <form class="container" [formGroup]="formempleadopuesto"  (ngSubmit)="registar()">
+    
+                
+
+                <div class="form-group">
+                    <label for="">Puesto</label>
+                    <select formControlName="puesto"  class="form-control custom-select">
+                        <option value="">Selecciona una opción</option>
+                        <option *ngFor="let p of puesto;" attr.value="{{p.nombre}}" >
+                          {{p.nombre}}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="">Persona</label>
+                    <select formControlName="persona"  class="form-control custom-select">
+                        <option value="">Selecciona una opción</option>
+                        <option *ngFor="let p of persona;" attr.value="{{p|json}}" >
+                          {{p.nombre}}&nbsp;{{p.nombre}}
+                        </option>
+                    </select>
+                </div>
+               
+                <div>
+                    <button type="submit"    class="btn btn-primary"  style="background-color: red;">Guardar</button>
+
+                </div>
+            </form>
+            
+        </div>
+    </div>
+</div>

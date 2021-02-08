@@ -3,10 +3,12 @@
 # instalacion de angular
 
 sudo apt-get update
+
 sudo apt-get install nodejs
+
 sudo apt-get install npm
 
-#actualizar node a la ultima version
+# actualizar node a la ultima version
 
 nodejs -v
 
